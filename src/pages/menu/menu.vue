@@ -149,10 +149,9 @@ export default {
 
 .info_view div div {
   width: 85%;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   text-align: start;
 }
 

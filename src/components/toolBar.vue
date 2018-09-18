@@ -56,9 +56,8 @@ export default {
   align-self: center;
   color: black;
   font-size: medium;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>
