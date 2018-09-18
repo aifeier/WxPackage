@@ -3,14 +3,14 @@
     <div class="div_bottom">
       <scroll-view class="scroll_view" scroll-x :scroll-into-view="firstViewId">
         <div v-for="item in menus[current].menu" :key="item" :id="item.id">
-          <img :src="item.imgUrl" mode="aspectFit"/>
+          <img :src="item.imgUrl" mode="scaleToFill"/>
         </div>
       </scroll-view>
     </div>
     <swiper :circular="false" :current="current" @change="changePage">
       <block v-for="item in menus" :key="item">
-        <swiper-item>
-          <div :style="{height:'100%',opacity:0.9,backgroundImage:'url(' + item.imgUrl + ')',backgroundRepeat:'no-repeat', backgroundPosition:'center center', backgroundSize: 'contain'}">
+        <swiper-item >
+          <div @click="gotoDetail(item)" :style="{height:'100%',opacity:0.9,backgroundImage:'url(' + item.imgUrl + ')',backgroundRepeat:'no-repeat', backgroundPosition:'center center', backgroundSize: 'cover'}" >
             <div class="swiper_menu">
               <div class="top">
                 <div>{{item.level}}</div>
@@ -23,21 +23,13 @@
                   <div class="persons">{{item.persons}}</div>
                 </div>
               </div>
-              <img class="icon_left" v-if="current > 0" @click="changeCurrent(-1)"  src="/static/icon.png" mode="aspectFit"/>
-              <img class="icon_right" v-if="current < (menus.length-1)" @click="changeCurrent(1)" src="/static/icon.png" mode="aspectFit"/>
-              <!-- <div class="div_bottom">
-                  <scroll-view class="scroll_view" scroll-x :scroll-into-view="firstViewId">
-                    <div v-for="(food, indea) in item.menu" :key="food" :id="food.id">
-                      <img :src="food.imgUrl" mode="aspectFit"/>
-                    </div>
-                  </scroll-view>
-              </div> -->
             </div>
           </div>
         </swiper-item>
       </block>
     </swiper>
-
+    <img class="icon_left" v-if="current > 0" @click="changeCurrent(-1)"  src="/static/icon.png" mode="aspectFit"/>
+    <img class="icon_right" v-if="current < (menus.length-1)" @click="changeCurrent(1)" src="/static/icon.png" mode="aspectFit"/>
   </div>
 </template>
 
@@ -58,8 +50,8 @@ export default {
             {
               id: "id12",
               imgUrl:
-              "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536831241074&di=9eb693062059d220f3f52df8c84f8963&imgtype=0&src=http%3A%2F%2Fww2.sinaimg.cn%2Flarge%2F85cccab3gw1etdlazjjufg206404ln3h.jpg"
-                // "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536734073443&di=c98549dada6a47f37bf71c0655713a6b&imgtype=0&src=http%3A%2F%2Fpic.ecook.cn%2Fweb%2F249633227.jpg"
+                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536831241074&di=9eb693062059d220f3f52df8c84f8963&imgtype=0&src=http%3A%2F%2Fww2.sinaimg.cn%2Flarge%2F85cccab3gw1etdlazjjufg206404ln3h.jpg"
+              // "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536734073443&di=c98549dada6a47f37bf71c0655713a6b&imgtype=0&src=http%3A%2F%2Fpic.ecook.cn%2Fweb%2F249633227.jpg"
             },
             {
               id: "id11",
@@ -140,6 +132,9 @@ export default {
     };
   },
   methods: {
+    gotoDetail(res){
+      this.app.navigateTo('../menu/main?item='+res.name)
+    },
     changePage(res) {
       if (this.current === res.target.current) return;
       this.current = res.target.current;
@@ -168,7 +163,7 @@ export default {
       //     console.log(err);
       //   },
       //   complete:function(res){
-      //    console.log('complete') 
+      //    console.log('complete')
       //   }
       // });
       // wx.openDocument({
@@ -284,7 +279,7 @@ swiper {
 .div_bottom {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
@@ -293,7 +288,7 @@ swiper {
 }
 
 .scroll_view {
-  width: 98%;
+  width: 100%;
   white-space: nowrap;
 }
 

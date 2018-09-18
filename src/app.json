@@ -1,16 +1,9 @@
 {
   "pages": [
     "pages/home/main",
-    "pages/index/main",
-    "pages/logs/main"
-  ],
-  "subPackages":[
-    {
-      "root":"pages/counter",
-      "pages":[
-           "a/main"
-      ]
-    }
+    "pages/prepare/main",
+    "pages/counter/main",
+    "pages/menu/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -18,5 +11,30 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black",
     "navigationStyle":"custom"
+  },
+  "tabBar":{
+    "color": "#000000",
+    "selectedColor": "#c8af70",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list":[{
+      "pagePath":"pages/home/main",
+      "text":"首页",
+      "iconPath": "static/res/icon_tab_learn_fotile_nor.png",
+      "selectedIconPath": "static/res/icon_tab_learn_fotile_sel.png"
+    },
+    {
+      "pagePath":"pages/prepare/main",
+      "text":"备菜台",
+      "iconPath": "static/res/icon_tab_learn_to_cook_nor.png",
+      "selectedIconPath": "static/res/icon_tab_learn_to_cook_sel.png"
+    },
+    {
+      "pagePath":"pages/counter/main",
+      "text":"我的",
+      "iconPath": "static/res/icon_tab_learn_member_snor.png",
+      "selectedIconPath": "static/res/icon_tab_learn_member_sel.png"
+    }
+  ]
   }
 }
